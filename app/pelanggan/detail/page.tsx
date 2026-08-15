@@ -1,6 +1,9 @@
 'use client'
+
 export const dynamic = 'force-dynamic';
+
 import {
+  Suspense,
   useCallback,
   useEffect,
   useMemo,
@@ -92,7 +95,7 @@ type ModalType =
   | 'delete'
   | null
 
-export default function PelangganDetailPage() {
+function PelangganDetailContent() {
   const searchParams =
     useSearchParams()
 
@@ -1789,4 +1792,11 @@ function Field({
 
     </div>
   )
+}
+export default function PelangganDetailPage() {
+  return (
+    <Suspense fallback={<div>Loading detail pelanggan...</div>}>
+      <PelangganDetailContent />
+      </Suspense>  
+    )
 }
